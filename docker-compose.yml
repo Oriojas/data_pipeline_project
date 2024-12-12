@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  producer:
+    build:
+      context: ./producer
+    networks:
+      - app_network
+    depends_on:
+      - consumer
+
+  consumer:
+    build:
+      context: ./consumer
+    networks:
+      - app_network
+    ports:
+      - "8000:8000"
+
+networks:
+  app_network:
+    driver: bridge
